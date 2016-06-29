@@ -18,36 +18,41 @@
 
 # Remove-ResourceGroups Azure Automation Runbook
 
-Follow these steps to import and use the Remove-ResourceGroups Azure Automation Runbook 
+Follow these steps to import and use the Remove-ResourceGroups Azure Automation Runbook
 
->[AZURE.WARNING] Use caution when using this runbook and take advantage of the "PreviewMode" to verify what will be automatically deleted.
+>[AZURE.WARNING] Use caution when using this runbook and take advantage of the **PreviewMode** to verify what will be automatically deleted.  Preview mode is the default option to protect resource groups from accidental deletion.
 
 ## Choose an Authentication Type
-The runbook works with both an AAD Credential (Automation Credential) and an AAD Service Principal (Automation Connection).  The AAD Service Principal is a prefered option as it uses certificate authentication instead of a password that may expire.
+The runbook works with both an AAD Credential (Automation Credential) and an AAD Service Principal (Automation Connection).  The AAD Service Principal is a prefered option as it uses certificate authentication instead of a password that may expire or change more frequently.
 
 ### Create Azure Automation credential asset
-Create an [Azure Automation credential asset](automation-credentials.md) called that contains the Azure AD user account with permissions to any targeted subscriptions.  
-
-To use a credential asset with a different name you can pass the asset name as a runbook input parameter or change the default value for the input parameter.
+Create an [Azure Automation credential asset] [azurecredentials] that contains the Azure AD user account with permissions to any targeted subscriptions.
 
 ### Create Azure Automation connection asset
-The easiest way to create a new Service Principal connection is to do so when creating a new Azure Automation resource. Follow this guide to create a [run as account] (https://azure.microsoft.com/en-us/documentation/articles/automation-sec-configure-azure-runas-account/).
+The easiest way to create a new Service Principal connection is to do so when creating a new Azure Automation resource. Follow this guide to create a [run as account][rasa]. 
+
+![Create Automation Account][1]
+
 
 Once the Service Principal connection is added as an Azure Automation asset, it should be granted permission to other targeted subscriptions.
 
 
 ## Import the runbook from the Runbook Gallery
 
-The easiest way to get started with this runbook is to import it from the Runbook Gallery in the [TechNet Script Center](http://gallery.technet.microsoft.com/).
+The easiest way to get started with this runbook is to import it from the Runbook Gallery in the [TechNet Script Center] [tnc].
 
-Follow the instructions to [Import a runbook from the Runbook Gallery with the Azure portal](runbooks-in-runbook-gallery.md).
+Follow the instructions to [Import a runbook from the Runbook Gallery with the Azure portal] [importrunbook].
 
-You can find this runbook under the name [Azure Automation - Remove Resource Groups] (https://gallery.technet.microsoft.com/scriptcenter/Azure-Automation-Remove-7581144c).
+You can find this runbook under the name [Azure Automation - Remove Resource Groups] [aarrg].
+
+![Import Runbook from Gallery][2]
 
 
 ## Execute the runbook
 
-To trigger the runbook you can follow one of the many documented ways here: [Starting a runbook](automation-starting-a-runbook.md)
+To trigger the runbook you can follow one of the many documented ways here: [Starting a runbook] [startrunbook]
+
+![Start a Runbook][3]
 
 The following parameters are available when starting the runbook:
 
@@ -58,7 +63,7 @@ The following parameters are available when starting the runbook:
     - SERVICEPRINCIPAL = Automation connection asset using an Azure AD service principal
 
 -   PARAMETER AuthenticationAssetName (Mandatory)
-    The name of an authentication asset with authorization for this subscription. 
+    The name of an authentication asset with authorization for this subscription.
 
 -   PARAMETER ActionType Mandatory. The specific action to take for either
     keeping assets that match the name filter and deleting everything else or
@@ -87,6 +92,20 @@ The following parameters are available when starting the runbook:
 
 
 ## Next Steps
--   To get started with creating your own runbook, see [Creating or importing a runbook in Azure Automation](automation-creating-importing-runbook.md)
--	To get started with PowerShell workflow runbooks, see [My first PowerShell workflow runbook](automation-first-runbook-textual.md)
+- To get started with creating your own runbook, see [Creating or importing a runbook in Azure Automation] [createrunbook]
+-	To get started with PowerShell workflow runbooks, see [My first PowerShell workflow runbook] [automatefirstrun]
 
+<!---- Links for the markdown page --->
+[rasa]: https://azure.microsoft.com/en-us/documentation/articles/automation-sec-configure-azure-runas-account/
+[tnc]: http://gallery.technet.microsoft.com/
+[aarrg]: https://gallery.technet.microsoft.com/scriptcenter/Azure-Automation-Remove-7581144c
+[azurecredentials]: https://azure.microsoft.com/en-us/documentation/articles/automation-credentials/
+[importrunbook]: https://azure.microsoft.com/en-us/documentation/articles/automation-runbook-gallery/
+[startrunbook]: https://azure.microsoft.com/en-us/documentation/articles/automation-starting-a-runbook/
+[createrunbook]: https://azure.microsoft.com/en-us/documentation/articles/automation-creating-importing-runbook/
+[automatefirstrun]: https://azure.microsoft.com/en-us/documentation/articles/automation-first-runbook-textual/
+
+<!----- image references ------>
+[1]: images/CreateAutomation.PNG
+[2]: images/ImportRunbookFromGallery.PNG
+[3]: images/RunBookStartForm.PNG
