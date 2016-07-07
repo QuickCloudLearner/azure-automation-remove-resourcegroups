@@ -50,9 +50,27 @@ You can find this runbook under the name [Azure Automation - Remove Resource Gro
 
 ## Execute the runbook
 
-To trigger the runbook you can follow one of the many documented ways here: [Starting a runbook] [startrunbook]
+To execute this runbook, navigate to the Runbooks tab of your Automation Account, and click on the Remove-ResourceGroups runbook. Click Start.
 
 ![Start a Runbook][3]
+
+You will be prompted to fill out a form. Here we will use the following parameters. Notice, you can enter multiple subscriptions and resource groups using comma separated lists; however, we will use one subscription and two resource groups. In order to ensure the desired resource groups will be deleted, it is recommended to always test the runbook with PREVIEWMODE set to true. 
+
+![Fill in the Runbook Form][4]
+
+Click OK. After the runbook completes your screen should look like the following. 
+
+![Completed Runbook][5]
+
+If you click Output then you can see what the runbook completed. Note, the output will vary depending on whether PREVIEWMODE was true or false (this is the output for PREVIEWMODE set to false).
+
+![Subscription 1 Output][6]
+![Subscription 2 Output][7]
+
+If PREVIEWMODE was false, then you can check your Resource Groups and notice that the resource groups have been deleted from the proper subscriptions.
+
+
+There are many other ways to trigger a runbook, please refer to one of the many documented ways here: [Starting a runbook] [startrunbook]. 
 
 The following parameters are available when starting the runbook:
 
@@ -108,4 +126,8 @@ The following parameters are available when starting the runbook:
 <!----- image references ------>
 [1]: images/CreateAutomation.PNG
 [2]: images/ImportRunbookFromGallery.PNG
-[3]: images/RunBookStartForm.PNG
+[3]: images/RunbookScreen.PNG
+[4]: images/RunbookForm.PNG
+[5]: images/CompletedRunbook.PNG
+[6]: images/Output1.PNG
+[7]: images/Output2.PNG
